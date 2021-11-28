@@ -11,29 +11,7 @@ document.querySelector('.c').addEventListener('click', clear);
 
 document.querySelector('.equal').addEventListener('click',calc);
 
-document.querySelector('.baks').addEventListener('click', eraseLast);
-
-
-
-function eraseLast(){
-    if(a!=='' && operator !=='' && b!== '' && count===0){
-
-        b = b.slice(0,-1);
-        out.textContent = b;
-
-    }else if(a!==''&& operator !== '' && b === ''){
-
-        operator = operator.slice(0,-1);
-        out.textContent = operator;
-
-    }else if(a!=='' && b==='' && operator === ''){
-
-        a = a.slice(0,-1);
-        out.textContent = a;
-
-    }
-}
-
+document.querySelector('.baks').addEventListener('click', eraseLeft); // удаляет но не показывает число на экране, с ответом тоже не рабоает
 
 
 
@@ -104,6 +82,7 @@ function inpNumber(){
 function addOperator(){
   
     if(event.target.classList.contains('equal')) return;
+   
 
     out.textContent='';
 
@@ -135,6 +114,29 @@ function calc(){
     }
 }
 
+function eraseLeft(){
+    if(b ==='' && operator==='' && a !==''){
+        a = a.slice(0,-1);
+        out.textContent = a;
+        
+    }else if(a !== '' &&  operator !== '' && b !== ''){
+        b = b.slice(0,-1);
+        out.textContent = b
+        
+    }else if(count){
+        
+        a = a.slice(0,-1);
+        out.textContent = out.textContent.slice(0,-1);
+
+    } else{
+        operator = '';
+        out.textContent = a;
+       
+    }
+
+
+    alert(`${out.textContent}  =  ${a}  ${operator}  ${b} `);
+}
 
 
 
